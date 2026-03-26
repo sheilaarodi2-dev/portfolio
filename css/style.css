@@ -7,31 +7,32 @@
 
 /* === 2. CSS CUSTOM PROPERTIES (change these to personalise) === */
 :root {
-  --clr-primary:  #1A3C6E;  /* Main brand colour — try #065F46 for green */
-  --clr-accent:   #E8A020;  /* Highlights and buttons */
-  --clr-text:     #1A1A1A;
-  --clr-muted:    #5C6B8A;
-  --clr-bg:       #F0F4FC;
+  --clr-primary:  #2D5A3D;  /* Deep forest green */
+  --clr-accent:   #F39C12;  /* Vibrant orange */
+  --clr-text:     #2C3E50;
+  --clr-muted:    #7F8C8D;
+  --clr-bg:       #F8F9F7;
   --clr-white:    #FFFFFF;
-  --clr-border:   #C8D4E8;
-  --radius:       10px;
-  --shadow:       0 2px 10px rgba(0,0,0,0.07);
-  --max-width:    1100px;
+  --clr-border:   #D5D8DC;
+  --radius:       12px;
+  --shadow:       0 4px 15px rgba(0,0,0,0.1);
+  --max-width:    1200px;
 }
 
 /* === 3. BASE TYPOGRAPHY === */
 body {
-  font-family: 'Segoe UI', system-ui, Arial, sans-serif;
-  font-size: 16px;
-  line-height: 1.65;
+  font-family: 'Georgia', 'Trebuchet MS', serif, system-ui;
+  font-size: 17px;
+  line-height: 1.75;
   color: var(--clr-text);
   background: var(--clr-bg);
+  letter-spacing: 0.3px;
 }
-h1 { font-size: clamp(2rem, 5vw, 3.5rem); line-height: 1.15; }
-h2 { font-size: 1.9rem; margin-bottom: 1rem; }
-h3 { font-size: 1.2rem; }
-a  { color: var(--clr-primary); }
-img{ max-width: 100%; height: auto; display: block; }
+h1 { font-size: clamp(2.2rem, 6vw, 3.8rem); line-height: 1.2; font-weight: 800; }
+h2 { font-size: 2rem; margin-bottom: 1.25rem; font-weight: 700; }
+h3 { font-size: 1.35rem; font-weight: 600; }
+a  { color: var(--clr-primary); transition: color 0.3s; }
+img{ max-width: 100%; height: auto; display: block; border-radius: var(--radius); }
 
 /* === 4. LAYOUT CONTAINER === */
 .container {
@@ -55,12 +56,13 @@ img{ max-width: 100%; height: auto; display: block; }
 
 /* === 6. HEADER + NAVIGATION (Flexbox) === */
 header {
-  background: var(--clr-primary);
-  padding: 1rem 0;
+  background: linear-gradient(135deg, var(--clr-primary) 0%, #1E3A2F 100%);
+  padding: 1.2rem 0;
   position: sticky;
   top: 0;
   z-index: 100;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  border-bottom: 3px solid var(--clr-accent);
 }
 header .container {
   display: flex;              /* FLEXBOX — row layout */
@@ -70,11 +72,12 @@ header .container {
   gap: 0.75rem;
 }
 .logo {
-  font-size: 1.3rem;
-  font-weight: 700;
+  font-size: 1.4rem;
+  font-weight: 800;
   color: white;
   text-decoration: none;
-  letter-spacing: -0.02em;
+  letter-spacing: 0.05em;
+  font-style: italic;
 }
 nav ul  { list-style: none; display: flex; gap: 1.5rem; }
 nav a   {
@@ -93,10 +96,12 @@ nav a:hover, nav a.active {
 
 /* === 7. HERO SECTION === */
 .hero {
-  background: var(--clr-primary);
+  background: linear-gradient(135deg, var(--clr-primary) 0%, #1E3A2F 100%);
   color: white;
-  padding: 6rem 1.5rem;
+  padding: 7rem 1.5rem;
   text-align: center;
+  position: relative;
+  overflow: hidden;
 }
 .hero .accent { color: var(--clr-accent); }
 .hero .tagline {
@@ -115,24 +120,26 @@ nav a:hover, nav a.active {
 /* === 8. BUTTONS === */
 .btn {
   display: inline-block;
-  padding: 0.8rem 2rem;
+  padding: 0.95rem 2.5rem;
   background: var(--clr-accent);
-  color: #1a0e00;
+  color: white;
   border-radius: var(--radius);
   text-decoration: none;
-  font-weight: 600;
-  font-size: 0.95rem;
+  font-weight: 700;
+  font-size: 1rem;
   border: none;
   cursor: pointer;
-  transition: transform 0.15s, opacity 0.15s;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(243, 156, 18, 0.3);
 }
-.btn:hover     { opacity: 0.88; transform: translateY(-1px); }
+.btn:hover     { opacity: 0.9; transform: translateY(-2px); box-shadow: 0 6px 18px rgba(243, 156, 18, 0.4); }
 .btn-outline   {
   background: transparent;
-  border: 2px solid rgba(255,255,255,0.6);
+  border: 2.5px solid rgba(255,255,255,0.8);
   color: white;
+  box-shadow: none;
 }
-.btn-outline:hover { border-color: white; }
+.btn-outline:hover { border-color: white; background: rgba(255,255,255,0.1); }
 
 /* === 9. PROJECT CARDS (CSS Grid) === */
 .projects-section { padding: 4rem 0; }
@@ -145,25 +152,37 @@ nav a:hover, nav a.active {
 .card {
   background: var(--clr-white);
   border-radius: var(--radius);
-  padding: 1.5rem;
-  border: 1px solid var(--clr-border);
+  padding: 2rem;
+  border: 2px solid var(--clr-border);
   box-shadow: var(--shadow);
   display: flex;
   flex-direction: column;
-  gap: 0.6rem;
-  transition: transform 0.2s, box-shadow 0.2s;
+  gap: 0.8rem;
+  transition: all 0.3s ease;
+  position: relative;
 }
-.card:hover  { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.1); }
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--clr-accent);
+  border-radius: var(--radius) var(--radius) 0 0;
+}
+.card:hover  { transform: translateY(-5px); box-shadow: 0 12px 30px rgba(0,0,0,0.15); }
 .card-tag {
   display: inline-block;
-  background: #D6E4F5;
-  color: var(--clr-primary);
-  font-size: 0.72rem;
-  font-weight: 600;
-  padding: 3px 10px;
+  background: var(--clr-accent);
+  color: white;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 5px 12px;
   border-radius: 20px;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.08em;
+  align-self: flex-start;
 }
 .card h3    { font-size: 1.1rem; color: var(--clr-primary); }
 .card p     { font-size: 0.9rem; color: var(--clr-muted); flex: 1; }
